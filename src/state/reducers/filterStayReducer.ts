@@ -37,8 +37,7 @@ export const filterStayReducer = (
 ) => {
   switch (action.type) {
     case "FILTER_STAY_DATA": {
-      const data: object[] = state.stayData;
-      const result = data.filter(
+      const result = jsonStayData.filter(
         (stayData: any) =>
           action.payload.city.split(", ")[0] === stayData.city &&
           action.payload.maxGuests <= stayData.maxGuests
