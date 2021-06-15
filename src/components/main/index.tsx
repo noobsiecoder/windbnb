@@ -20,18 +20,15 @@ const MainSection: React.FC = () => {
     StayReduxCombinerState["stay"]["stayData"]
   >((state) => state.stay.stayData);
 
-  const imageStyle = { width: "24.625rem", height: "16.668rem" };
-  
   return (
     <main className="p-4 space-y-12 sm:p-6 md:p-8 lg:py-8 lg:px-10 xl:px-12 2xl:px-14">
       <h1 className="text-lg font-bold md:text-xl xl:text-2xl font-montserrat">
         Stays in Finland
       </h1>
-      <div className="grid justify-center gap-8 mt-8 lg:grid-cols-3 md:grid-cols-2 justify-items-auto">
+      <div className="grid justify-center gap-8 mt-8 lg:grid-cols-3 sm:grid-cols-2">
         {stayData.map((data, index) => (
           <div className="space-y-5" key={index}>
             <Image
-              imageStyle={imageStyle}
               url={data.photo}
               altData={`${data.city.toLowerCase()}_${data.country.toLowerCase()}`}
             />
