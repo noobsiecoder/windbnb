@@ -8,23 +8,21 @@ import { StayReduxCombinerState } from "../../state/reducers/filterStayReducer";
 import {
   BedCount,
   Image,
+  NoData,
   Rating,
   StayType,
   SuperHost,
   Title,
 } from "./StayComponent/index";
 
-const MainSection: React.FC = () => {
+const StayDataComponent = () => {
   const stayData = useSelector<
     StayReduxCombinerState,
     StayReduxCombinerState["stay"]["stayData"]
   >((state) => state.stay.stayData);
 
-  return (
-    <main className="p-4 space-y-12 sm:p-6 md:p-8 lg:py-8 lg:px-10 xl:px-12 2xl:px-14">
-      <h1 className="text-lg font-bold md:text-xl xl:text-2xl font-montserrat">
-        Stays in Finland
-      </h1>
+  if (stayData.length)
+    return (
       <div className="grid justify-center gap-8 mt-8 lg:grid-cols-3 sm:grid-cols-2">
         {stayData.map((data, index) => (
           <div className="space-y-5" key={index}>
@@ -48,8 +46,17 @@ const MainSection: React.FC = () => {
           </div>
         ))}
       </div>
-    </main>
-  );
+    );
+  else return <NoData />;
 };
+
+const MainSection: React.FC = () => (
+  <main className="p-4 space-y-12 sm:p-6 md:p-8 lg:py-8 lg:px-10 xl:px-12 2xl:px-14">
+    <h1 className="text-lg font-bold md:text-xl xl:text-2xl font-montserrat">
+      Stays in Finland
+    </h1>
+    <StayDataComponent />
+  </main>
+);
 
 export default MainSection;
